@@ -6,6 +6,7 @@ import 'History/history_screen.dart';
 import '../colors/app_colors.dart';
 // import 'notification/notification_screen.dart';
 import 'notification/notification_home_screen.dart';
+import 'password/login_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -42,7 +43,17 @@ class _DashboardScreenState
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primary,
+         backgroundColor: AppColors.primary,
+  leading: IconButton(
+    icon: const Icon(Icons.arrow_back),
+    onPressed: () {
+      // Navigator.pushAndRemoveUntil(
+      //   context,
+      //   MaterialPageRoute(builder: (_) => const LoginScreen()),
+      //   (route) => false,  // Removes all previous routes
+      // );
+    },
+  ),
           title: Text(
     currentIndex == 0
         ? "Officer Dashboard"
