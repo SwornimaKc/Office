@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/employee_dashboard/employee_dashboard_screen.dart';
 import 'screens/splash_screen.dart';
 
 void main()  {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       scaffoldBackgroundColor: const Color(0xFFF7F9FC),
       fontFamily:'Roboto',
       ),
-      home: const SplashScreen(),
+      home: const EmployeeDashboardScreen(),
     );
   }
 }
