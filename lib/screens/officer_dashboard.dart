@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tmobile_app/screens/home_screen.dart';
 import 'package:tmobile_app/screens/profile_screen.dart';
-import 'admin_screen.dart';
+import 'admin/admin_screen.dart';
 import 'History/history_screen.dart';
 import '../colors/app_colors.dart';
 // import 'notification/notification_screen.dart';
@@ -44,16 +44,6 @@ class _DashboardScreenState
     return Scaffold(
       appBar: AppBar(
          backgroundColor: AppColors.primary,
-  leading: IconButton(
-    icon: const Icon(Icons.arrow_back),
-    onPressed: () {
-      // Navigator.pushAndRemoveUntil(
-      //   context,
-      //   MaterialPageRoute(builder: (_) => const LoginScreen()),
-      //   (route) => false,  // Removes all previous routes
-      // );
-    },
-  ),
           title: Text(
     currentIndex == 0
         ? "Officer Dashboard"
@@ -74,12 +64,6 @@ actions: [
 
       onTap: () {
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const ProfileScreen(),
-          ),
-        );
 
       },
 

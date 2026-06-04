@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
+
+  @override
+  State<HistoryScreen> createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
+  String selectedStatus = "All Status";
+  String selectedDate = "All Time";
 
   @override
   Widget build(BuildContext context) {
@@ -11,30 +19,56 @@ class HistoryScreen extends StatelessWidget {
         "message": "Bring file from Accounts Department",
         "status": "Completed",
         "time": "10:30 AM | 20 May",
+        "date": "Today",
       },
       {
         "name": "Sunita Sharma",
         "message": "Prepare tea for meeting",
         "status": "On The Way",
         "time": "09:15 AM | 20 May",
+        "date": "Today",
       },
       {
         "name": "Vikram Singh",
         "message": "Urgent meeting in cabin",
         "status": "Busy",
         "time": "Yesterday | 03:45 PM",
+        "date": "Yesterday",
       },
       {
         "name": "Anita Verma",
         "message": "Come immediately",
         "status": "Pending",
         "time": "Yesterday | 11:20 AM",
+        "date": "Yesterday",
+      },
+      {
+        "name": "Priya Sharma",
+        "message": "Send report to manager",
+        "status": "Completed",
+        "time": "02:00 PM | 19 May",
+        "date": "Last Week",
+      },
+      {
+        "name": "Rajesh Singh",
+        "message": "Fix the printer issue",
+        "status": "Completed",
+        "time": "11:00 AM | 18 May",
+        "date": "Last Week",
       },
     ];
 
+    // Filter items based on selected status and date
+    final filteredItems = historyItems.where((item) {
+      bool statusMatch = selectedStatus == "All Status" ||
+          item["status"] == selectedStatus;
+      bool dateMatch = selectedDate == "All Time" ||
+          item["date"] == selectedDate;
+      return statusMatch && dateMatch;
+    }).toList();
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
-
       body: Column(
         children: [
           const SizedBox(height: 16),
@@ -46,16 +80,21 @@ class HistoryScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _filterButton("All Status"),
-
+                  /// Status Filter Dropdown
+                  _buildStatusFilterButton(),
                   const SizedBox(width: 8),
 
-                  _filterButton("Today"),
-
+                  /// Date Filter Dropdown
+                  _buildDateFilterButton(),
                   const SizedBox(width: 8),
 
                   OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Export functionality can be added later
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Export feature coming soon!")),
+                      );
+                    },
                     icon: const Icon(Icons.download, size: 18),
                     label: const Text("Export"),
                     style: OutlinedButton.styleFrom(
@@ -74,54 +113,155 @@ class HistoryScreen extends StatelessWidget {
 
           /// HISTORY LIST
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              itemCount: historyItems.length,
-              itemBuilder: (context, index) {
-                final item = historyItems[index];
+            child: filteredItems.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.history,
+                          size: 80,
+                          color: Colors.grey.shade300,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          "No history found",
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    itemCount: filteredItems.length,
+                    itemBuilder: (context, index) {
+                      final item = filteredItems[index];
 
-                return HistoryCard(
-                  name: item["name"]!,
-                  message: item["message"]!,
-                  status: item["status"]!,
-                  time: item["time"]!,
-                );
-              },
-            ),
+                      return HistoryCard(
+                        name: item["name"]!,
+                        message: item["message"]!,
+                        status: item["status"]!,
+                        time: item["time"]!,
+                      );
+                    },
+                  ),
           ),
         ],
       ),
     );
   }
 
-  static Widget _filterButton(String title) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 10,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.grey.shade300,
+  Widget _buildStatusFilterButton() {
+    return PopupMenuButton<String>(
+      onSelected: (String value) {
+        setState(() {
+          selectedStatus = value;
+        });
+      },
+      itemBuilder: (BuildContext context) => [
+        const PopupMenuItem(
+          value: "All Status",
+          child: Text("All Status"),
+        ),
+        const PopupMenuItem(
+          value: "Completed",
+          child: Text("Completed"),
+        ),
+        const PopupMenuItem(
+          value: "On The Way",
+          child: Text("On The Way"),
+        ),
+        const PopupMenuItem(
+          value: "Busy",
+          child: Text("Busy"),
+        ),
+        const PopupMenuItem(
+          value: "Pending",
+          child: Text("Pending"),
+        ),
+      ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: Colors.grey.shade300,
+          ),
+        ),
+        child: Row(
+          children: [
+            Text(
+              selectedStatus,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(width: 4),
+            const Icon(
+              Icons.keyboard_arrow_down,
+              size: 18,
+            ),
+          ],
         ),
       ),
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
+    );
+  }
+
+  Widget _buildDateFilterButton() {
+    return PopupMenuButton<String>(
+      onSelected: (String value) {
+        setState(() {
+          selectedDate = value;
+        });
+      },
+      itemBuilder: (BuildContext context) => [
+        const PopupMenuItem(
+          value: "All Time",
+          child: Text("All Time"),
+        ),
+        const PopupMenuItem(
+          value: "Today",
+          child: Text("Today"),
+        ),
+        const PopupMenuItem(
+          value: "Yesterday",
+          child: Text("Yesterday"),
+        ),
+        const PopupMenuItem(
+          value: "Last Week",
+          child: Text("Last Week"),
+        ),
+      ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: Colors.grey.shade300,
+          ),
+        ),
+        child: Row(
+          children: [
+            Text(
+              selectedDate,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          const SizedBox(width: 4),
-          const Icon(
-            Icons.keyboard_arrow_down,
-            size: 18,
-          ),
-        ],
+            const SizedBox(width: 4),
+            const Icon(
+              Icons.keyboard_arrow_down,
+              size: 18,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -165,11 +305,9 @@ class HistoryCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
-
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.05),
@@ -178,7 +316,6 @@ class HistoryCard extends StatelessWidget {
           ),
         ],
       ),
-
       child: Row(
         children: [
           /// PROFILE
@@ -190,7 +327,6 @@ class HistoryCard extends StatelessWidget {
               color: Colors.blue,
             ),
           ),
-
           const SizedBox(width: 12),
 
           /// DETAILS
@@ -205,9 +341,7 @@ class HistoryCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 const SizedBox(height: 4),
-
                 Text(
                   message,
                   maxLines: 2,
@@ -217,9 +351,7 @@ class HistoryCard extends StatelessWidget {
                     fontSize: 13,
                   ),
                 ),
-
                 const SizedBox(height: 6),
-
                 Text(
                   time,
                   style: TextStyle(
@@ -230,7 +362,6 @@ class HistoryCard extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(width: 8),
 
           /// STATUS BADGE
