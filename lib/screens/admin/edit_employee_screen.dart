@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/employee.dart';
+import '../../models/employee.dart';
+
 
 class EditEmployeeScreen extends StatefulWidget {
   final Employee employee;

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
+import '../../constants/app_colors.dart';
 import 'reset_password_screen.dart';
-import '../../colors/app_colors.dart';
+
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});

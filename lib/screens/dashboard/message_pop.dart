@@ -119,10 +119,10 @@ class _EmployeeMessagePopupState
                     CircleAvatar(
                       radius: 36,
                       backgroundColor: Colors.white,
-                      child: Image.asset(
-                        'lib/assests/man.png',
-                        width: 50,
-                      ),
+                      // child: Image.asset(
+                      //   'assests/man.png',
+                      //   width: 50,
+                      // ),
                     ),
 
                     const SizedBox(width: 15),
@@ -196,7 +196,7 @@ class _EmployeeMessagePopupState
                 children: [
                   buildQuickAction(
                     icon: Image.asset(
-                      'lib/assests/folder.png',
+                      'assets/images/folder.png',
                       width: 42,
                       height: 42,
                     ),
@@ -210,7 +210,7 @@ class _EmployeeMessagePopupState
 
                   buildQuickAction(
                     icon: Image.asset(
-                      'lib/assests/tea.png',
+                      'assets/images/tea.png',
                       width: 42,
                       height: 42,
                     ),
@@ -224,7 +224,7 @@ class _EmployeeMessagePopupState
 
                   buildQuickAction(
                     icon: Image.asset(
-                      'lib/assests/meetingg.png',
+                      'assets/images/meetingg.png',
                       width: 42,
                       height: 42,
                     ),
@@ -238,7 +238,7 @@ class _EmployeeMessagePopupState
 
                   buildQuickAction(
                     icon: Image.asset(
-                      'lib/assests/manrun.png',
+                      'assets/images/manrun.png',
                       width: 42,
                       height: 42,
                     ),

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:tmobile_app/screens/password/login_screen.dart';
-import '../../colors/app_colors.dart';
+import 'package:tmobile_app/screens/auth/login_screen.dart';
+
+import '../../constants/app_colors.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tmobile_app/screens/home_screen.dart';
-import 'package:tmobile_app/screens/profile_screen.dart';
+import '../constants/app_colors.dart';
 import 'admin/admin_screen.dart';
-import 'History/history_screen.dart';
-import '../colors/app_colors.dart';
-// import 'notification/notification_screen.dart';
+import 'history/history_screen.dart';
 import 'notification/notification_home_screen.dart';
-import 'password/login_screen.dart';
+
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -43,6 +41,7 @@ class _DashboardScreenState
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
          backgroundColor: AppColors.primary,
           title: Text(
     currentIndex == 0
@@ -59,19 +58,19 @@ actions: [
   Padding(
     padding: const EdgeInsets.only(right: 12),
 
-    child: InkWell(
-      borderRadius: BorderRadius.circular(30),
+    // child: InkWell(
+    //   borderRadius: BorderRadius.circular(30),
 
-      onTap: () {
+    //   onTap: () {
 
 
-      },
+    //   },
 
-      child: const CircleAvatar(
-        backgroundColor: Colors.white,
-        child: Icon(Icons.person),
-      ),
-    ),
+    //   child: const CircleAvatar(
+    //     backgroundColor: Colors.white,
+    //     child: Icon(Icons.person),
+    //   ),
+    // ),
   ),
 ],
       ),

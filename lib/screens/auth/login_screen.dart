@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmobile_app/screens/officer_dashboard.dart';
-import '../../colors/app_colors.dart';
+import '../../constants/app_colors.dart';
 import 'forgot_password_screen.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tmobile_app/screens/dashboard/message_pop.dart';
-import '../../colors/app_colors.dart';
+
+import '../../constants/app_colors.dart';
+
 
 
 class EmployeeCard extends StatelessWidget {

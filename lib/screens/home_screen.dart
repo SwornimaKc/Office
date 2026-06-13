@@ -232,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       QuickActionCard(
                         icon: Image.asset(
-                          'lib/assests/folder.png',
+                          'assets/images/folder.png',
                           width: 40,
                           height: 40,
                         ),
@@ -244,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       QuickActionCard(
                         icon: Image.asset(
-                          'lib/assests/tea.png',
+                          'assets/images/tea.png',
                           width: 50,
                           height: 40,
                         ),
@@ -256,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       QuickActionCard(
                         icon: Image.asset(
-                          'lib/assests/meetingg.png',
+                          'assets/images/meetingg.png',
                           width: 60,
                           height: 55,
                         ),
@@ -268,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       QuickActionCard(
                         icon: Image.asset(
-                          'lib/assests/manrun.png',
+                          'assets/images/manrun.png',
                           width: 45,
                           height: 40,
                         ),

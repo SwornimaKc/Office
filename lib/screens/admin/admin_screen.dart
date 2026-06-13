@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tmobile_app/screens/admin/widgets/employee_card.dart';
-import 'package:tmobile_app/screens/admin/widgets/quick_action_card.dart';
-import 'package:tmobile_app/screens/admin/widgets/overview_card.dart';
-
+import 'package:tmobile_app/widgets/employee_card.dart';
+import '../../services/employee_service.dart';
+import '../../widgets/overview_card.dart';
+import '../../widgets/quick_action_card.dart';
 import 'add_employee_screen.dart';
 import 'edit_employee_screen.dart';
-import 'services/employee_service.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
