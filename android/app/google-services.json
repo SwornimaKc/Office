@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669485530403",
+    "project_id": "mobile-app-softech",
+    "storage_bucket": "mobile-app-softech.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669485530403:android:738e15114ed49775ec6096",
+        "android_client_info": {
+          "package_name": "com.example.tmobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFZD6ncumVQpefVTPsGnPsBz2XG25WtsU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

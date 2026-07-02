@@ -7,6 +7,7 @@ import 'notification/notification_home_screen.dart';
 
 
 class DashboardScreen extends StatefulWidget {
+  static const String routeName = "/";
   const DashboardScreen({super.key});
 
   @override
@@ -58,19 +59,6 @@ actions: [
   Padding(
     padding: const EdgeInsets.only(right: 12),
 
-    // child: InkWell(
-    //   borderRadius: BorderRadius.circular(30),
-
-    //   onTap: () {
-
-
-    //   },
-
-    //   child: const CircleAvatar(
-    //     backgroundColor: Colors.white,
-    //     child: Icon(Icons.person),
-    //   ),
-    // ),
   ),
 ],
       ),
