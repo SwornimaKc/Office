@@ -1,12 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 class AuthService {
-  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  static const String _validEmail = "admin@gmail.com";
+  static const String _validPassword = "adminpassword";
 
-  static User? get currentUser => _auth.currentUser;
+  // Tracks whether someone is currently "logged in" this session
+  static bool _isLoggedIn = false;
 
-  static Future<bool> loginAdmin(String email, String password) async{
-    final credential = await _auth.signInWithEmailAndPassword(email: email, password: password);
-    return  credential.user != null;
+  static bool get isLoggedIn => _isLoggedIn;
+
+  static Future<bool> loginAdmin(String email, String password) async {
+    if (email.trim() == _validEmail && password == _validPassword) {
+      _isLoggedIn = true;
+      return true;
+    }
+    return false;
+  }
+
+  static void logout() {
+    _isLoggedIn = false;
   }
 }
